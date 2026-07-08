@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sueffig & Solide - The Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Escape aus dem Proberaum</p>
+          <h1>Sueffig & Solide</h1>
+        </div>
+        <div class="header-actions">
+          <button
+            id="helpButton"
+            class="text-toggle"
+            type="button"
+            aria-label="Hilfe einschalten"
+            aria-pressed="false"
+          >
+            Hilfe
+          </button>
+          <button id="restartButton" class="icon-button" type="button" aria-label="Neu starten" title="Neu starten">
+            ↻
+          </button>
+        </div>
+      </header>
+
+      <section id="stage" class="stage" aria-label="Proberaum">
+        <img
+          class="room-image"
+          src="Hintergrund/proberaum-bierflaschen.png"
+          alt="Ein enger Proberaum mit Gitarren, Schlagzeug, Verstaerkern, Setlist und vielen Bierflaschen"
+        />
+        <div id="messageBox" class="room-message" aria-live="polite">
+          <p id="messageText"></p>
+        </div>
+
+        <button class="beer beer-1" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-2" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-3" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-4" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-5" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-6" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-7" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-8" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-9" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-10" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-11" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-12" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+
+        <button class="hotspot hotspot-board" type="button" data-action="board" aria-label="Setlist ansehen">
+          <span>Setlist</span>
+        </button>
+        <button class="hotspot hotspot-guitar" type="button" data-action="guitar" aria-label="Gitarre nehmen">
+          <span>Gitarre</span>
+        </button>
+        <button class="hotspot hotspot-pedals" type="button" data-action="pedals" aria-label="Pedale untersuchen">
+          <span>Pedale</span>
+        </button>
+        <button class="hotspot hotspot-drums" type="button" data-action="drums" aria-label="Schlagzeug testen">
+          <span>Drums</span>
+        </button>
+        <button class="hotspot hotspot-poster" type="button" data-action="poster" aria-label="Poster ansehen">
+          <span>Poster</span>
+        </button>
+        <button class="hotspot hotspot-amp" type="button" data-action="amp" aria-label="Verstaerker einschalten">
+          <span>Amp</span>
+        </button>
+        <button class="hotspot hotspot-notebook" type="button" data-action="notebook" aria-label="Song schreiben">
+          <span>Song</span>
+        </button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
