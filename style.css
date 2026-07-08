@@ -17,6 +17,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100svh;
   background: var(--bg);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
@@ -28,10 +29,13 @@ button {
 
 .game {
   min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: 14px;
   padding: 14px;
+  padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right))
+    max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
 }
 
 .topbar {
@@ -105,7 +109,9 @@ h1 {
   align-self: start;
   justify-self: center;
   width: min(100%, calc((100vh - 128px) * 1448 / 1086));
+  width: min(100%, calc((100svh - 128px) * 1448 / 1086));
   max-height: calc(100vh - 128px);
+  max-height: calc(100svh - 128px);
   aspect-ratio: 1448 / 1086;
   overflow: hidden;
   border: 1px solid rgba(255, 240, 199, 0.18);
@@ -334,6 +340,10 @@ h1 {
 }
 
 @media (max-width: 900px) {
+  .topbar {
+    align-items: end;
+  }
+
   .stage {
     width: 100%;
     max-height: none;
@@ -342,7 +352,40 @@ h1 {
 
 @media (max-width: 620px) {
   .game {
-    padding: 10px;
+    gap: 10px;
+    padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right))
+      max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  }
+
+  .topbar {
+    align-items: start;
+    gap: 10px;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+  }
+
+  h1 {
+    font-size: clamp(1.45rem, 8vw, 2rem);
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .text-toggle,
+  .icon-button {
+    min-height: 40px;
+  }
+
+  .icon-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .text-toggle {
+    padding: 0 11px;
   }
 
   .hotspot span {
@@ -353,5 +396,79 @@ h1 {
     top: 2.5%;
     width: 82%;
     min-height: 54px;
+  }
+
+  .room-message p {
+    font-size: clamp(0.76rem, 3.1vw, 0.92rem);
+    line-height: 1.2;
+  }
+
+  .hotspot {
+    width: clamp(44px, 13vw, 56px);
+    height: clamp(44px, 13vw, 56px);
+  }
+
+  .beer {
+    width: clamp(34px, 10vw, 46px);
+    height: clamp(34px, 10vw, 46px);
+  }
+}
+
+@media (max-width: 620px) and (orientation: portrait) {
+  .stage {
+    margin-top: 2px;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .game {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .topbar {
+    align-items: center;
+  }
+
+  .eyebrow {
+    display: none;
+  }
+
+  h1 {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .text-toggle,
+  .icon-button {
+    min-height: 36px;
+  }
+
+  .icon-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .text-toggle {
+    padding: 0 11px;
+  }
+
+  .stage {
+    width: min(100%, calc((100svh - 56px) * 1448 / 1086));
+  }
+
+  .room-message {
+    width: 76%;
+    min-height: 42px;
+    padding: 7px 11px;
+  }
+
+  .room-message p {
+    font-size: clamp(0.7rem, 1.8vw, 0.86rem);
   }
 }
