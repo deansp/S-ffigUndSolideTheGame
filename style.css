@@ -158,19 +158,19 @@ h1 {
   z-index: 6;
   left: 50%;
   top: 50%;
-  max-width: min(210px, 54%);
+  max-width: min(132px, 42%);
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -120%) scale(0.96);
   border: 1px solid rgba(255, 240, 199, 0.58);
-  border-radius: 8px;
+  border-radius: 6px;
   background: rgba(18, 17, 15, 0.86);
   color: var(--text);
-  padding: 8px 10px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.34);
-  font-size: 0.86rem;
+  padding: 4px 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  font-size: 0.68rem;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.08;
   text-align: center;
   transition:
     opacity 140ms ease,
@@ -180,6 +180,41 @@ h1 {
 .local-feedback.is-visible {
   opacity: 1;
   transform: translate(-50%, -120%) scale(1);
+}
+
+.story-overlay {
+  position: absolute;
+  z-index: 9;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(9, 9, 8, 0.76);
+  color: var(--text);
+  cursor: pointer;
+  padding: clamp(18px, 4vw, 48px);
+  text-align: left;
+}
+
+.story-overlay.is-visible {
+  display: flex;
+}
+
+.story-text {
+  width: min(92%, 880px);
+  max-height: 86%;
+  overflow: auto;
+  border: 1px solid rgba(255, 240, 199, 0.42);
+  border-radius: 8px;
+  background: rgba(18, 17, 15, 0.9);
+  padding: clamp(18px, 3vw, 34px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  font-size: clamp(0.95rem, 1.7vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1.42;
+  white-space: pre-line;
 }
 
 .room-image {
@@ -424,7 +459,8 @@ h1 {
   .room-message {
     top: 2.5%;
     width: 82%;
-    min-height: 54px;
+    min-height: 42px;
+    padding: 7px 9px;
   }
 
   .stage.has-local-feedback .room-message {
@@ -432,8 +468,8 @@ h1 {
   }
 
   .room-message p {
-    font-size: clamp(0.76rem, 3.1vw, 0.92rem);
-    line-height: 1.2;
+    font-size: clamp(0.64rem, 2.65vw, 0.78rem);
+    line-height: 1.14;
   }
 
   .hotspot {
@@ -448,6 +484,21 @@ h1 {
 
   .local-feedback {
     display: block;
+    max-width: min(118px, 38%);
+    padding: 4px 6px;
+    font-size: 0.62rem;
+  }
+
+  .story-overlay {
+    padding: 12px;
+  }
+
+  .story-text {
+    width: 94%;
+    max-height: 88%;
+    padding: 14px;
+    font-size: clamp(0.62rem, 2.65vw, 0.78rem);
+    line-height: 1.28;
   }
 }
 
@@ -501,12 +552,13 @@ h1 {
 
   .room-message {
     width: 76%;
-    min-height: 42px;
-    padding: 7px 11px;
+    min-height: 34px;
+    padding: 5px 8px;
   }
 
   .room-message p {
-    font-size: clamp(0.7rem, 1.8vw, 0.86rem);
+    font-size: clamp(0.58rem, 1.45vw, 0.72rem);
+    line-height: 1.12;
   }
 
   .stage.has-local-feedback .room-message {
@@ -514,8 +566,20 @@ h1 {
   }
 
   .local-feedback {
-    max-width: 190px;
-    padding: 7px 9px;
-    font-size: 0.78rem;
+    max-width: 112px;
+    padding: 4px 6px;
+    font-size: 0.6rem;
+  }
+
+  .story-overlay {
+    padding: 10px;
+  }
+
+  .story-text {
+    width: 88%;
+    max-height: 88%;
+    padding: 12px 14px;
+    font-size: clamp(0.56rem, 1.55vw, 0.72rem);
+    line-height: 1.22;
   }
 }

@@ -1,6 +1,8 @@
 const messageText = document.querySelector("#messageText");
 const messageBox = document.querySelector("#messageBox");
 const localFeedback = document.querySelector("#localFeedback");
+const storyOverlay = document.querySelector("#storyOverlay");
+const storyText = document.querySelector("#storyText");
 const stage = document.querySelector("#stage");
 const helpButton = document.querySelector("#helpButton");
 const restartButton = document.querySelector("#restartButton");
@@ -12,6 +14,24 @@ const startMessage =
 
 const beatBlockMessage = "Erstmal brauch ich n fetten Beat, sonst macht es keinen Sinn.";
 const neededBeers = 5;
+const introStory = `Der Proberaum riecht nach kaltem Bier, Staub und schlechten Entscheidungen.
+Seit Wochen läuft nichts mehr rund. Jede Probe endet gleich: Diskussionen. Genervte Blicke. Türen knallen. Irgendwer packt beleidigt sein Instrument ein. 
+Vielleicht hat diese Band einfach ihren letzten Akkord gespielt.
+Oder vielleicht fehlt nur noch ein verdammter Song.
+Ein Hit. Kein Radioschrott. Kein glattgebügelter Pop. Sondern ein Song, der laut genug ist, um jeden Streit zu übertönen.
+Jetzt bist du dran.
+Bring die Instrumente wieder zum Laufen, um den Song deines Lebens zu schreiben.
+Vielleicht wird daraus der größte Punk-Hit aller Zeiten.
+Vielleicht rettest du die Band.
+Vielleicht wirst du zur Legende.
+Oder du scheiterst glorreich.`;
+const beatStory = `Der Beat steht.
+Unglaublich.
+Irgendwie hast du zwischen Hopfen, Chaos und völliger Selbstüberschätzung tatsächlich einen brauchbaren Schlagzeugbeat zusammengeklickt.
+Der Proberaum wackelt, die Wände vibrieren und zum ersten Mal seit Wochen nickt niemand genervt.
+Ein guter Anfang.
+Aber ein Beat allein macht noch keinen Hit.
+Jetzt braucht der Song das nächste Instrument.`;
 
 const items = {
   beers: "Biere intus",
@@ -30,6 +50,8 @@ let state = {
   beersDrunk: 0,
   drunkBeers: [],
   isHelping: false,
+  storyOpen: false,
+  beatStorySeen: false,
   won: false,
 };
 
@@ -70,8 +92,8 @@ function showLocalFeedback(text, point) {
   }
 
   const stageRect = stage.getBoundingClientRect();
-  const feedbackWidth = 180;
-  const feedbackHeight = 52;
+  const feedbackWidth = 120;
+  const feedbackHeight = 34;
   const x = ((point.clientX - stageRect.left) / stageRect.width) * 100;
   const y = ((point.clientY - stageRect.top) / stageRect.height) * 100;
   const minX = (feedbackWidth / stageRect.width) * 50;
@@ -100,6 +122,17 @@ function show(text, isWin = false, mobileText = text) {
   if (isMobileFeedbackMode() && lastPointerPoint) {
     showLocalFeedback(mobileText, lastPointerPoint);
   }
+}
+
+function showStory(text) {
+  state.storyOpen = true;
+  storyText.textContent = text;
+  storyOverlay.classList.add("is-visible");
+}
+
+function hideStory() {
+  state.storyOpen = false;
+  storyOverlay.classList.remove("is-visible");
 }
 
 function render() {
@@ -209,6 +242,11 @@ function handleDrums() {
   addItem("groove");
   solve("drums");
   show("Da ist er: Kick, Snare, Kick-Kick, Snare. Ein fetter Beat, der den ganzen Raum anschiebt.", false, "Fetter Beat!");
+
+  if (!state.beatStorySeen) {
+    state.beatStorySeen = true;
+    showStory(beatStory);
+  }
 }
 
 function handlePoster() {
@@ -321,6 +359,8 @@ helpButton.addEventListener("click", () => {
   render();
 });
 
+storyOverlay.addEventListener("click", hideStory);
+
 restartButton.addEventListener("click", () => {
   const keepHelpMode = state.isHelping;
 
@@ -330,6 +370,8 @@ restartButton.addEventListener("click", () => {
     beersDrunk: 0,
     drunkBeers: [],
     isHelping: keepHelpMode,
+    storyOpen: false,
+    beatStorySeen: false,
     won: false,
   };
   lastPointerEvent = null;
@@ -338,7 +380,9 @@ restartButton.addEventListener("click", () => {
   localFeedback.classList.remove("is-visible");
   show(startMessage);
   render();
+  showStory(introStory);
 });
 
 show(startMessage);
 render();
+showStory(introStory);
