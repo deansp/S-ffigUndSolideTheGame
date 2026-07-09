@@ -4,6 +4,7 @@ const localFeedback = document.querySelector("#localFeedback");
 const storyOverlay = document.querySelector("#storyOverlay");
 const storyText = document.querySelector("#storyText");
 const boardOverlay = document.querySelector("#boardOverlay");
+const posterOverlay = document.querySelector("#posterOverlay");
 const stage = document.querySelector("#stage");
 const helpButton = document.querySelector("#helpButton");
 const musicButton = document.querySelector("#musicButton");
@@ -146,6 +147,14 @@ function hideBoardOverlay() {
   boardOverlay.classList.remove("is-visible");
 }
 
+function showPosterOverlay() {
+  posterOverlay.classList.add("is-visible");
+}
+
+function hidePosterOverlay() {
+  posterOverlay.classList.remove("is-visible");
+}
+
 async function startBackgroundMusic() {
   if (!state.musicWanted || !backgroundMusic.paused) {
     return;
@@ -272,14 +281,14 @@ function handleDrums() {
 }
 
 function handlePoster() {
+  showPosterOverlay();
+
   if (needsBeat("poster")) {
-    show(beatBlockMessage, false, "Erst Beat.");
     return;
   }
 
   addItem("lyric");
   solve("poster");
-  show("Das Poster liefert die erste Zeile: 'Wir sind zu spaet, aber niemals zu leise.' Das bleibt.", false, "Textidee!");
 }
 
 function handleAmp() {
@@ -399,6 +408,7 @@ stage.addEventListener("pointerdown", () => {
 
 storyOverlay.addEventListener("click", hideStory);
 boardOverlay.addEventListener("click", hideBoardOverlay);
+posterOverlay.addEventListener("click", hidePosterOverlay);
 backgroundMusic.addEventListener("play", render);
 backgroundMusic.addEventListener("pause", render);
 
@@ -422,6 +432,7 @@ restartButton.addEventListener("click", () => {
   stage.classList.remove("has-local-feedback");
   localFeedback.classList.remove("is-visible");
   hideBoardOverlay();
+  hidePosterOverlay();
   show(startMessage);
   render();
   showStory(introStory);
