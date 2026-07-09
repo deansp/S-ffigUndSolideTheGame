@@ -14,9 +14,10 @@ const rotateHint = document.querySelector("#rotateHint");
 const rotateHintClose = document.querySelector("#rotateHintClose");
 const hotspots = document.querySelectorAll(".hotspot");
 const beerButtons = document.querySelectorAll(".beer");
+const songSteps = document.querySelectorAll(".song-step");
 
 const startMessage =
-  "Los schreib einen HIT!.";
+  "Werd kreativ!";
 
 const beatBlockMessage = "Erstmal brauch ich n fetten Beat, sonst macht es keinen Sinn.";
 const neededBeers = 5;
@@ -58,6 +59,7 @@ let state = {
   musicWanted: true,
   storyOpen: false,
   beatStorySeen: false,
+  continuationQueued: false,
   won: false,
 };
 
@@ -139,6 +141,11 @@ function showStory(text) {
 function hideStory() {
   state.storyOpen = false;
   storyOverlay.classList.remove("is-visible");
+
+  if (state.continuationQueued) {
+    state.continuationQueued = false;
+    showStory("Fortsetzung folgt");
+  }
 }
 
 function showBoardOverlay() {
@@ -188,6 +195,11 @@ function render() {
 
   beerButtons.forEach((beerButton, index) => {
     beerButton.classList.toggle("is-drunk", state.drunkBeers.includes(index));
+  });
+
+  songSteps.forEach((songStep) => {
+    const isDone = songStep.dataset.songPart === "drums" && hasBeat();
+    songStep.classList.toggle("is-done", isDone);
   });
 }
 
@@ -278,6 +290,7 @@ function handleDrums() {
 
   if (!state.beatStorySeen) {
     state.beatStorySeen = true;
+    state.continuationQueued = true;
     showStory(beatStory);
   }
 }
@@ -430,6 +443,7 @@ restartButton.addEventListener("click", () => {
     musicWanted: keepMusicMode,
     storyOpen: false,
     beatStorySeen: false,
+    continuationQueued: false,
     won: false,
   };
   lastPointerEvent = null;

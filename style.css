@@ -198,6 +198,90 @@ h1 {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
+.song-progress {
+  position: absolute;
+  z-index: 5;
+  right: auto;
+  bottom: 2%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 96%;
+  padding: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.song-progress h2 {
+  margin: 0;
+  color: var(--accent-strong);
+  flex: 0 0 auto;
+  font-size: clamp(0.72rem, 1.2vw, 0.96rem);
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+.song-steps {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.song-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+  border: 1px solid rgba(255, 240, 199, 0.22);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.42);
+  color: rgba(255, 242, 208, 0.74);
+  padding: 3px 7px;
+  font-size: clamp(0.52rem, 0.95vw, 0.72rem);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+}
+
+.song-check {
+  width: 12px;
+  height: 12px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 240, 199, 0.45);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.song-step.is-done {
+  border-color: rgba(124, 224, 104, 0.6);
+  background: rgba(27, 69, 26, 0.58);
+  color: #d8ffd0;
+}
+
+.song-step.is-done .song-check {
+  border-color: rgba(124, 224, 104, 0.9);
+  background: rgba(124, 224, 104, 0.22);
+}
+
+.song-step.is-done .song-check::before {
+  content: "✓";
+  color: #d8ffd0;
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
 .room-message {
   position: absolute;
   z-index: 5;
@@ -570,6 +654,7 @@ h1 {
     width: 100%;
     max-height: none;
   }
+
 }
 
 @media (max-width: 620px) {
@@ -678,6 +763,36 @@ h1 {
     border-width: 4px;
     transform: none;
   }
+
+  .song-progress {
+    right: auto;
+    bottom: 1.5%;
+    left: 50%;
+    gap: 6px;
+    max-width: 98%;
+    padding: 0;
+  }
+
+  .song-progress h2 {
+    font-size: clamp(0.48rem, 2.1vw, 0.62rem);
+  }
+
+  .song-steps {
+    gap: 4px;
+  }
+
+  .song-step {
+    min-height: 18px;
+    gap: 3px;
+    padding: 3px 4px;
+    font-size: clamp(0.38rem, 1.55vw, 0.48rem);
+  }
+
+  .song-check {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+  }
 }
 
 @media (max-width: 620px) and (orientation: portrait) {
@@ -745,6 +860,7 @@ h1 {
     margin-top: 0;
     justify-self: start;
   }
+
 }
 
 @media (max-width: 900px) and (orientation: landscape) {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sueffig & Solide - The Game</title>
-    <link rel="stylesheet" href="style.css?v=15" />
+    <link rel="stylesheet" href="style.css?v=18" />
   </head>
   <body>
     <aside id="rotateHint" class="rotate-phone" aria-label="Handy drehen">
@@ -106,10 +106,36 @@
         <button class="hotspot hotspot-notebook" type="button" data-action="notebook" aria-label="Song schreiben">
           <span>Song</span>
         </button>
+
+        <section class="song-progress" aria-label="Song Fortschritt">
+          <h2>Mach nen Hit.</h2>
+          <ul class="song-steps">
+            <li class="song-step" data-song-part="drums">
+              <span class="song-check" aria-hidden="true"></span>
+              <span>Drums</span>
+            </li>
+            <li class="song-step" data-song-part="bass">
+              <span class="song-check" aria-hidden="true"></span>
+              <span>Bass</span>
+            </li>
+            <li class="song-step" data-song-part="guitar-rhythm">
+              <span class="song-check" aria-hidden="true"></span>
+              <span>Guitar Rhythm</span>
+            </li>
+            <li class="song-step" data-song-part="guitar-lead">
+              <span class="song-check" aria-hidden="true"></span>
+              <span>Guitar Lead</span>
+            </li>
+            <li class="song-step" data-song-part="voice">
+              <span class="song-check" aria-hidden="true"></span>
+              <span>Voice</span>
+            </li>
+          </ul>
+        </section>
       </section>
     </main>
 
     <audio id="backgroundMusic" src="Hintergrundmusik/Atzenklo.mp3" preload="none" loop></audio>
-    <script src="script.js?v=13"></script>
+    <script src="script.js?v=17"></script>
   </body>
 </html>
