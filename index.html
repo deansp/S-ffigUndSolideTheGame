@@ -4,13 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sueffig & Solide - The Game</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=10" />
   </head>
   <body>
+    <aside class="rotate-phone" aria-label="Handy drehen">
+      <div class="rotate-phone-card">
+        <span class="rotate-phone-icon" aria-hidden="true">↻</span>
+        <p>Bitte Handy quer drehen</p>
+        <small>Der Proberaum ist im Querformat spielbar.</small>
+      </div>
+    </aside>
+
     <main class="game">
       <header class="topbar">
         <div>
-          <p class="eyebrow">Escape aus dem Proberaum</p>
           <h1>Sueffig & Solide</h1>
         </div>
         <div class="header-actions">
@@ -23,6 +30,15 @@
           >
             Hilfe
           </button>
+          <button
+            id="musicButton"
+            class="text-toggle music-toggle"
+            type="button"
+            aria-label="Musik ausschalten"
+            aria-pressed="true"
+          >
+            Musik
+          </button>
           <button id="restartButton" class="icon-button" type="button" aria-label="Neu starten" title="Neu starten">
             ↻
           </button>
@@ -32,7 +48,7 @@
       <section id="stage" class="stage" aria-label="Proberaum">
         <img
           class="room-image"
-          src="Hintergrund/proberaum-bierflaschen.png"
+          src="Hintergrund/Bild3.png"
           alt="Ein enger Proberaum mit Gitarren, Schlagzeug, Verstaerkern, Setlist und vielen Bierflaschen"
         />
         <div id="messageBox" class="room-message" aria-live="polite">
@@ -42,15 +58,20 @@
         <button id="storyOverlay" class="story-overlay" type="button" aria-label="Story weiter">
           <span id="storyText" class="story-text"></span>
         </button>
+        <button id="boardOverlay" class="board-overlay" type="button" aria-label="Tafel schliessen">
+          <span class="board-frame">
+            <img class="board-image" src="Hintergrund/Tafel.png" alt="Vergroesserte Tafel mit Songideen" />
+          </span>
+        </button>
 
         <button class="beer beer-1" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-2" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
-        <button class="beer beer-3" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-3" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-4" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-5" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-6" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-7" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
-        <button class="beer beer-8" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
+        <button class="beer beer-8" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-9" type="button" data-beer="good" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-10" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
         <button class="beer beer-11" type="button" data-beer="bad" aria-label="Bierflasche nehmen"></button>
@@ -80,6 +101,7 @@
       </section>
     </main>
 
-    <script src="script.js?v=4"></script>
+    <audio id="backgroundMusic" src="Hintergrundmusik/Atzenklo.mp3" preload="none" loop></audio>
+    <script src="script.js?v=10"></script>
   </body>
 </html>

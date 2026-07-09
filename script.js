@@ -3,22 +3,25 @@ const messageBox = document.querySelector("#messageBox");
 const localFeedback = document.querySelector("#localFeedback");
 const storyOverlay = document.querySelector("#storyOverlay");
 const storyText = document.querySelector("#storyText");
+const boardOverlay = document.querySelector("#boardOverlay");
 const stage = document.querySelector("#stage");
 const helpButton = document.querySelector("#helpButton");
+const musicButton = document.querySelector("#musicButton");
 const restartButton = document.querySelector("#restartButton");
+const backgroundMusic = document.querySelector("#backgroundMusic");
 const hotspots = document.querySelectorAll(".hotspot");
 const beerButtons = document.querySelectorAll(".beer");
 
 const startMessage =
-  "Du stehst im Proberaum. Erste Aufgabe: Finde genug gute Biere, trink sie aus und werde locker genug fuer einen fetten Beat.";
+  "Los schreib einen HIT!.";
 
 const beatBlockMessage = "Erstmal brauch ich n fetten Beat, sonst macht es keinen Sinn.";
 const neededBeers = 5;
 const introStory = `Der Proberaum riecht nach kaltem Bier, Staub und schlechten Entscheidungen.
-Seit Wochen läuft nichts mehr rund. Jede Probe endet gleich: Diskussionen. Genervte Blicke. Türen knallen. Irgendwer packt beleidigt sein Instrument ein. 
+Seit Wochen läuft nichts mehr rund. Jede Probe endet gleich: Diskussionen. Genervte Blicke. Türen knallen.
 Vielleicht hat diese Band einfach ihren letzten Akkord gespielt.
 Oder vielleicht fehlt nur noch ein verdammter Song.
-Ein Hit. Kein Radioschrott. Kein glattgebügelter Pop. Sondern ein Song, der laut genug ist, um jeden Streit zu übertönen.
+Ein Hit. Kein Radioschrott. Sondern ein Song, der laut genug ist, um jeden Streit zu übertönen.
 Jetzt bist du dran.
 Bring die Instrumente wieder zum Laufen, um den Song deines Lebens zu schreiben.
 Vielleicht wird daraus der größte Punk-Hit aller Zeiten.
@@ -30,8 +33,7 @@ Unglaublich.
 Irgendwie hast du zwischen Hopfen, Chaos und völliger Selbstüberschätzung tatsächlich einen brauchbaren Schlagzeugbeat zusammengeklickt.
 Der Proberaum wackelt, die Wände vibrieren und zum ersten Mal seit Wochen nickt niemand genervt.
 Ein guter Anfang.
-Aber ein Beat allein macht noch keinen Hit.
-Jetzt braucht der Song das nächste Instrument.`;
+Aber ein Beat allein macht noch keinen Hit.`;
 
 const items = {
   beers: "Biere intus",
@@ -50,6 +52,7 @@ let state = {
   beersDrunk: 0,
   drunkBeers: [],
   isHelping: false,
+  musicWanted: true,
   storyOpen: false,
   beatStorySeen: false,
   won: false,
@@ -135,10 +138,38 @@ function hideStory() {
   storyOverlay.classList.remove("is-visible");
 }
 
+function showBoardOverlay() {
+  boardOverlay.classList.add("is-visible");
+}
+
+function hideBoardOverlay() {
+  boardOverlay.classList.remove("is-visible");
+}
+
+async function startBackgroundMusic() {
+  if (!state.musicWanted || !backgroundMusic.paused) {
+    return;
+  }
+
+  try {
+    backgroundMusic.volume = 0.45;
+    await backgroundMusic.play();
+  } catch {
+    render();
+  }
+}
+
+function stopBackgroundMusic() {
+  backgroundMusic.pause();
+}
+
 function render() {
   stage.classList.toggle("is-helping", state.isHelping);
   helpButton.setAttribute("aria-pressed", String(state.isHelping));
   helpButton.setAttribute("aria-label", state.isHelping ? "Hilfe ausschalten" : "Hilfe einschalten");
+  musicButton.setAttribute("aria-pressed", String(state.musicWanted));
+  musicButton.setAttribute("aria-label", state.musicWanted ? "Musik ausschalten" : "Musik einschalten");
+  musicButton.classList.toggle("is-playing", state.musicWanted);
 
   hotspots.forEach((hotspot) => {
     hotspot.classList.toggle("is-done", state.solved.includes(hotspot.dataset.action));
@@ -182,17 +213,8 @@ function handleBeer(index, beerButton) {
 }
 
 function handleBoard() {
-  if (needsBeat("board")) {
-    show(beatBlockMessage, false, "Erst Beat.");
-    return;
-  }
-
   solve("board");
-  show(
-    "Auf der Setlist steht bei Song 3: Keine Loesung. Daneben wurde gekritzelt: Erst Kabel, dann Krach, dann Refrain.",
-    false,
-    "Spaeter.",
-  );
+  showBoardOverlay();
 }
 
 function handleGuitar() {
@@ -359,10 +381,30 @@ helpButton.addEventListener("click", () => {
   render();
 });
 
+musicButton.addEventListener("click", async () => {
+  state.musicWanted = !state.musicWanted;
+
+  if (state.musicWanted) {
+    await startBackgroundMusic();
+  } else {
+    stopBackgroundMusic();
+  }
+
+  render();
+});
+
+stage.addEventListener("pointerdown", () => {
+  startBackgroundMusic();
+});
+
 storyOverlay.addEventListener("click", hideStory);
+boardOverlay.addEventListener("click", hideBoardOverlay);
+backgroundMusic.addEventListener("play", render);
+backgroundMusic.addEventListener("pause", render);
 
 restartButton.addEventListener("click", () => {
   const keepHelpMode = state.isHelping;
+  const keepMusicMode = state.musicWanted;
 
   state = {
     inventory: [],
@@ -370,6 +412,7 @@ restartButton.addEventListener("click", () => {
     beersDrunk: 0,
     drunkBeers: [],
     isHelping: keepHelpMode,
+    musicWanted: keepMusicMode,
     storyOpen: false,
     beatStorySeen: false,
     won: false,
@@ -378,6 +421,7 @@ restartButton.addEventListener("click", () => {
   lastPointerPoint = null;
   stage.classList.remove("has-local-feedback");
   localFeedback.classList.remove("is-visible");
+  hideBoardOverlay();
   show(startMessage);
   render();
   showStory(introStory);
