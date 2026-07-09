@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sueffig & Solide - The Game</title>
-    <link rel="stylesheet" href="style.css?v=12" />
+    <link rel="stylesheet" href="style.css?v=13" />
   </head>
   <body>
-    <aside class="rotate-phone" aria-label="Handy drehen">
+    <aside id="rotateHint" class="rotate-phone" aria-label="Handy drehen">
       <div class="rotate-phone-card">
         <span class="rotate-phone-icon" aria-hidden="true">↻</span>
-        <p>Bitte Handy quer drehen</p>
-        <small>Der Proberaum ist im Querformat spielbar.</small>
+        <div>
+          <p>Querformat ist bequemer</p>
+          <small>Im Hochformat kannst du den Raum seitlich verschieben.</small>
+        </div>
+        <button id="rotateHintClose" class="rotate-phone-close" type="button" aria-label="Hinweis schliessen">×</button>
       </div>
     </aside>
 
@@ -107,6 +110,6 @@
     </main>
 
     <audio id="backgroundMusic" src="Hintergrundmusik/Atzenklo.mp3" preload="none" loop></audio>
-    <script src="script.js?v=11"></script>
+    <script src="script.js?v=12"></script>
   </body>
 </html>
