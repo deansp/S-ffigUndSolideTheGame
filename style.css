@@ -48,7 +48,7 @@ button {
   border: 1px solid rgba(255, 240, 199, 0.44);
   border-radius: 8px;
   background: rgba(18, 17, 15, 0.94);
-  padding: 10px 12px;
+  padding: 8px 10px;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.48);
   pointer-events: auto;
   backdrop-filter: blur(8px);
@@ -56,20 +56,20 @@ button {
 
 .rotate-phone-icon {
   display: inline-grid;
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   place-items: center;
   border: 1px solid rgba(240, 180, 71, 0.6);
   border-radius: 999px;
   color: var(--accent-strong);
-  font-size: 1.35rem;
+  font-size: 1.1rem;
   line-height: 1;
   transform: rotate(90deg);
 }
 
 .rotate-phone p {
   margin: 0 0 3px;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-weight: 800;
   line-height: 1.12;
 }
@@ -77,20 +77,20 @@ button {
 .rotate-phone small {
   display: block;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.68rem;
   font-weight: 800;
   line-height: 1.28;
 }
 
 .rotate-phone-close {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border: 1px solid rgba(255, 240, 199, 0.28);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.22);
   color: var(--text);
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 800;
   line-height: 1;
 }
@@ -589,7 +589,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(1.45rem, 8vw, 2rem);
+    font-size: clamp(1.15rem, 6.5vw, 1.55rem);
   }
 
   .header-actions {
@@ -598,16 +598,18 @@ h1 {
 
   .text-toggle,
   .icon-button {
-    min-height: 40px;
+    min-height: 34px;
   }
 
   .icon-button {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
+    font-size: 1.08rem;
   }
 
   .text-toggle {
-    padding: 0 11px;
+    padding: 0 8px;
+    font-size: 0.72rem;
   }
 
   .hotspot span {
@@ -617,8 +619,8 @@ h1 {
   .room-message {
     top: 2.5%;
     width: 82%;
-    min-height: 42px;
-    padding: 7px 9px;
+    min-height: 34px;
+    padding: 5px 7px;
   }
 
   .stage.has-local-feedback .room-message {
@@ -626,8 +628,8 @@ h1 {
   }
 
   .room-message p {
-    font-size: clamp(0.64rem, 2.65vw, 0.78rem);
-    line-height: 1.14;
+    font-size: clamp(0.5rem, 2.15vw, 0.64rem);
+    line-height: 1.1;
   }
 
   .hotspot {
@@ -642,9 +644,9 @@ h1 {
 
   .local-feedback {
     display: block;
-    max-width: min(118px, 38%);
-    padding: 4px 6px;
-    font-size: 0.62rem;
+    max-width: min(102px, 34%);
+    padding: 3px 5px;
+    font-size: 0.52rem;
   }
 
   .story-overlay {
@@ -654,9 +656,9 @@ h1 {
   .story-text {
     width: 94%;
     max-height: 88%;
-    padding: 14px;
-    font-size: clamp(0.62rem, 2.65vw, 0.78rem);
-    line-height: 1.28;
+    padding: 11px;
+    font-size: clamp(0.52rem, 2.25vw, 0.66rem);
+    line-height: 1.22;
   }
 
   .board-overlay,
@@ -714,7 +716,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(1.15rem, 6vw, 1.55rem);
+    font-size: clamp(0.98rem, 5vw, 1.28rem);
   }
 
   .header-actions {
@@ -723,17 +725,18 @@ h1 {
 
   .text-toggle,
   .icon-button {
-    min-height: 36px;
+    min-height: 32px;
   }
 
   .text-toggle {
-    padding: 0 9px;
-    font-size: 0.78rem;
+    padding: 0 7px;
+    font-size: 0.68rem;
   }
 
   .icon-button {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
   }
 
   .stage {
@@ -761,7 +764,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-size: clamp(1rem, 3.2vw, 1.45rem);
   }
 
   .header-actions {
@@ -770,16 +773,18 @@ h1 {
 
   .text-toggle,
   .icon-button {
-    min-height: 36px;
+    min-height: 30px;
   }
 
   .icon-button {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
   }
 
   .text-toggle {
-    padding: 0 11px;
+    padding: 0 8px;
+    font-size: 0.68rem;
   }
 
   .stage {
@@ -788,13 +793,13 @@ h1 {
 
   .room-message {
     width: 76%;
-    min-height: 34px;
-    padding: 5px 8px;
+    min-height: 28px;
+    padding: 4px 6px;
   }
 
   .room-message p {
-    font-size: clamp(0.58rem, 1.45vw, 0.72rem);
-    line-height: 1.12;
+    font-size: clamp(0.48rem, 1.15vw, 0.6rem);
+    line-height: 1.08;
   }
 
   .stage.has-local-feedback .room-message {
@@ -802,9 +807,9 @@ h1 {
   }
 
   .local-feedback {
-    max-width: 112px;
-    padding: 4px 6px;
-    font-size: 0.6rem;
+    max-width: 96px;
+    padding: 3px 5px;
+    font-size: 0.5rem;
   }
 
   .story-overlay {
@@ -814,9 +819,9 @@ h1 {
   .story-text {
     width: 88%;
     max-height: 88%;
-    padding: 12px 14px;
-    font-size: clamp(0.56rem, 1.55vw, 0.72rem);
-    line-height: 1.22;
+    padding: 10px 12px;
+    font-size: clamp(0.48rem, 1.22vw, 0.6rem);
+    line-height: 1.18;
   }
 
   .board-overlay,
