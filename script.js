@@ -6,9 +6,9 @@ const storyText = document.querySelector("#storyText");
 const boardOverlay = document.querySelector("#boardOverlay");
 const posterOverlay = document.querySelector("#posterOverlay");
 const stage = document.querySelector("#stage");
-const helpButton = document.querySelector("#helpButton");
-const musicButton = document.querySelector("#musicButton");
-const restartButton = document.querySelector("#restartButton");
+const helpButtons = document.querySelectorAll('[data-control="help"]');
+const musicButtons = document.querySelectorAll('[data-control="music"]');
+const restartButtons = document.querySelectorAll('[data-control="restart"]');
 const backgroundMusic = document.querySelector("#backgroundMusic");
 const hotspots = document.querySelectorAll(".hotspot");
 const beerButtons = document.querySelectorAll(".beer");
@@ -181,11 +181,17 @@ function stopBackgroundMusic() {
 
 function render() {
   stage.classList.toggle("is-helping", state.isHelping);
-  helpButton.setAttribute("aria-pressed", String(state.isHelping));
-  helpButton.setAttribute("aria-label", state.isHelping ? "Hilfe ausschalten" : "Hilfe einschalten");
-  musicButton.setAttribute("aria-pressed", String(state.musicWanted));
-  musicButton.setAttribute("aria-label", state.musicWanted ? "Musik ausschalten" : "Musik einschalten");
-  musicButton.classList.toggle("is-playing", state.musicWanted);
+
+  helpButtons.forEach((helpButton) => {
+    helpButton.setAttribute("aria-pressed", String(state.isHelping));
+    helpButton.setAttribute("aria-label", state.isHelping ? "Hilfe ausschalten" : "Hilfe einschalten");
+  });
+
+  musicButtons.forEach((musicButton) => {
+    musicButton.setAttribute("aria-pressed", String(state.musicWanted));
+    musicButton.setAttribute("aria-label", state.musicWanted ? "Musik ausschalten" : "Musik einschalten");
+    musicButton.classList.toggle("is-playing", state.musicWanted);
+  });
 
   hotspots.forEach((hotspot) => {
     hotspot.classList.toggle("is-done", state.solved.includes(hotspot.dataset.action));
@@ -396,23 +402,27 @@ beerButtons.forEach((beerButton, index) => {
   });
 });
 
-helpButton.addEventListener("click", () => {
-  lastPointerEvent = null;
-  lastPointerPoint = null;
-  state.isHelping = !state.isHelping;
-  render();
+helpButtons.forEach((helpButton) => {
+  helpButton.addEventListener("click", () => {
+    lastPointerEvent = null;
+    lastPointerPoint = null;
+    state.isHelping = !state.isHelping;
+    render();
+  });
 });
 
-musicButton.addEventListener("click", async () => {
-  state.musicWanted = !state.musicWanted;
+musicButtons.forEach((musicButton) => {
+  musicButton.addEventListener("click", async () => {
+    state.musicWanted = !state.musicWanted;
 
-  if (state.musicWanted) {
-    await startBackgroundMusic();
-  } else {
-    stopBackgroundMusic();
-  }
+    if (state.musicWanted) {
+      await startBackgroundMusic();
+    } else {
+      stopBackgroundMusic();
+    }
 
-  render();
+    render();
+  });
 });
 
 stage.addEventListener("pointerdown", () => {
@@ -425,31 +435,33 @@ posterOverlay.addEventListener("click", hidePosterOverlay);
 backgroundMusic.addEventListener("play", render);
 backgroundMusic.addEventListener("pause", render);
 
-restartButton.addEventListener("click", () => {
-  const keepHelpMode = state.isHelping;
-  const keepMusicMode = state.musicWanted;
+restartButtons.forEach((restartButton) => {
+  restartButton.addEventListener("click", () => {
+    const keepHelpMode = state.isHelping;
+    const keepMusicMode = state.musicWanted;
 
-  state = {
-    inventory: [],
-    solved: [],
-    beersDrunk: 0,
-    drunkBeers: [],
-    isHelping: keepHelpMode,
-    musicWanted: keepMusicMode,
-    storyOpen: false,
-    beatStorySeen: false,
-    continuationQueued: false,
-    won: false,
-  };
-  lastPointerEvent = null;
-  lastPointerPoint = null;
-  stage.classList.remove("has-local-feedback");
-  localFeedback.classList.remove("is-visible");
-  hideBoardOverlay();
-  hidePosterOverlay();
-  show(startMessage);
-  render();
-  showStory(introStory);
+    state = {
+      inventory: [],
+      solved: [],
+      beersDrunk: 0,
+      drunkBeers: [],
+      isHelping: keepHelpMode,
+      musicWanted: keepMusicMode,
+      storyOpen: false,
+      beatStorySeen: false,
+      continuationQueued: false,
+      won: false,
+    };
+    lastPointerEvent = null;
+    lastPointerPoint = null;
+    stage.classList.remove("has-local-feedback");
+    localFeedback.classList.remove("is-visible");
+    hideBoardOverlay();
+    hidePosterOverlay();
+    show(startMessage);
+    render();
+    showStory(introStory);
+  });
 });
 
 show(startMessage);

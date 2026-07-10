@@ -32,7 +32,7 @@ button {
   min-height: 100svh;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 10px;
+  gap: 14px;
   padding: 14px;
   padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right))
     max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
@@ -42,7 +42,7 @@ button {
   grid-column: 1 / -1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
 }
 
@@ -112,12 +112,12 @@ h1 {
 
 .stage {
   position: relative;
-  align-self: center;
+  align-self: start;
   justify-self: center;
-  width: min(100%, calc((100vh - 96px) * 1448 / 1086));
-  width: min(100%, calc((100svh - 96px) * 1448 / 1086));
-  max-height: calc(100vh - 96px);
-  max-height: calc(100svh - 96px);
+  width: min(100%, calc((100vh - 128px) * 1448 / 1086));
+  width: min(100%, calc((100svh - 128px) * 1448 / 1086));
+  max-height: calc(100vh - 128px);
+  max-height: calc(100svh - 128px);
   aspect-ratio: 1448 / 1086;
   overflow: hidden;
   border: 1px solid rgba(255, 240, 199, 0.18);
@@ -129,6 +129,7 @@ h1 {
 .stage-actions {
   position: absolute;
   z-index: 7;
+  display: none;
   top: 2%;
   right: 2%;
   gap: 7px;
@@ -138,6 +139,16 @@ h1 {
   background: rgba(18, 17, 15, 0.66);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
   backdrop-filter: blur(6px);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .desktop-actions {
+    display: none;
+  }
+
+  .stage-actions {
+    display: flex;
+  }
 }
 
 .stage-actions .text-toggle,
@@ -683,10 +694,7 @@ h1 {
   }
 
   .room-message {
-    top: 9%;
-    width: 82%;
-    min-height: 34px;
-    padding: 5px 7px;
+    display: none;
   }
 
   .stage.has-local-feedback .room-message {
@@ -786,26 +794,22 @@ h1 {
 @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
   body {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
   }
 
   .game {
+    min-height: 100vh;
+    min-height: 100svh;
     width: 100%;
     min-width: 0;
-    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    grid-template-rows: minmax(0, 1fr);
+    place-items: center;
+    padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right))
+      max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
   }
 
   .topbar {
-    position: sticky;
-    left: 0;
-    z-index: 12;
-    width: calc(100vw - 20px);
-    align-items: center;
-    border: 1px solid rgba(255, 240, 199, 0.12);
-    border-radius: 8px;
-    background: rgba(16, 16, 14, 0.9);
-    padding: 8px;
-    backdrop-filter: blur(8px);
+    display: none;
   }
 
   h1 {
@@ -818,12 +822,15 @@ h1 {
 
   .stage-actions {
     position: absolute;
+    top: 1.4%;
+    right: 1.4%;
     left: auto;
     width: auto;
     align-items: center;
     border-color: rgba(255, 240, 199, 0.2);
     background: rgba(18, 17, 15, 0.66);
-    padding: 4px;
+    gap: 3px;
+    padding: 3px;
   }
 
   .text-toggle,
@@ -844,24 +851,25 @@ h1 {
 
   .stage-actions .text-toggle,
   .stage-actions .icon-button {
-    min-height: 25px;
+    min-height: 22px;
   }
 
   .stage-actions .text-toggle {
-    padding: 0 5px;
-    font-size: 0.54rem;
+    padding: 0 4px;
+    font-size: 0.48rem;
   }
 
   .stage-actions .icon-button {
-    width: 25px;
-    height: 25px;
-    font-size: 0.8rem;
+    width: 22px;
+    height: 22px;
+    font-size: 0.72rem;
   }
 
   .stage {
     width: 100%;
     max-height: none;
-    margin-top: 0;
+    margin: auto;
+    align-self: center;
     justify-self: center;
   }
 
@@ -913,10 +921,7 @@ h1 {
   }
 
   .room-message {
-    width: 76%;
-    top: 8%;
-    min-height: 28px;
-    padding: 4px 6px;
+    display: none;
   }
 
   .room-message p {

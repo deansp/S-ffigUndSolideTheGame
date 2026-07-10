@@ -4,13 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sueffig & Solide - The Game</title>
-    <link rel="stylesheet" href="style.css?v=22" />
+    <link rel="stylesheet" href="style.css?v=25" />
   </head>
   <body>
     <main class="game">
       <header class="topbar">
         <div>
           <h1>Sueffig & Solide</h1>
+        </div>
+        <div class="header-actions desktop-actions">
+          <button
+            id="helpButton"
+            class="text-toggle"
+            type="button"
+            data-control="help"
+            aria-label="Hilfe einschalten"
+            aria-pressed="false"
+          >
+            Hilfe
+          </button>
+          <button
+            id="musicButton"
+            class="text-toggle music-toggle"
+            type="button"
+            data-control="music"
+            aria-label="Musik ausschalten"
+            aria-pressed="true"
+          >
+            Musik
+          </button>
+          <button
+            id="restartButton"
+            class="icon-button"
+            type="button"
+            data-control="restart"
+            aria-label="Neu starten"
+            title="Neu starten"
+          >
+            ↻
+          </button>
         </div>
       </header>
 
@@ -22,24 +54,30 @@
         />
         <div class="header-actions stage-actions">
           <button
-            id="helpButton"
             class="text-toggle"
             type="button"
+            data-control="help"
             aria-label="Hilfe einschalten"
             aria-pressed="false"
           >
             Hilfe
           </button>
           <button
-            id="musicButton"
             class="text-toggle music-toggle"
             type="button"
+            data-control="music"
             aria-label="Musik ausschalten"
             aria-pressed="true"
           >
             Musik
           </button>
-          <button id="restartButton" class="icon-button" type="button" aria-label="Neu starten" title="Neu starten">
+          <button
+            class="icon-button"
+            type="button"
+            data-control="restart"
+            aria-label="Neu starten"
+            title="Neu starten"
+          >
             ↻
           </button>
         </div>
@@ -125,6 +163,6 @@
     </main>
 
     <audio id="backgroundMusic" src="Hintergrundmusik/Atzenklo.mp3" preload="none" loop></audio>
-    <script src="script.js?v=19"></script>
+    <script src="script.js?v=20"></script>
   </body>
 </html>
