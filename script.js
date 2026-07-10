@@ -217,7 +217,7 @@ function handleBeer(index, beerButton) {
   state.drunkBeers.push(index);
 
   if (beerButton.dataset.beer === "bad") {
-    show("Ihhhh Schaal", false, "Ihhhh Schaal");
+    show("Ihhhh Schaal", false, "Ihhhh Schaal. Das schmeckt nach Proberaumteppich.");
     return;
   }
 
@@ -226,11 +226,11 @@ function handleBeer(index, beerButton) {
 
   if (state.beersDrunk >= neededBeers) {
     solve("beers");
-    show("So langsam sitzt die Stimme tiefer. Jetzt koennte am Schlagzeug was gehen.", false, "Jetzt Drums.");
+    show("So langsam sitzt die Stimme tiefer. Jetzt koennte am Schlagzeug was gehen.", false, "Jet§ gäh ig zu den drums. highs");
     return;
   }
 
-  show("Das war gut. Ein bisschen weniger schuechtern.", false, "Laeuft.");
+  show("Das war gut. Ein bisschen weniger schuechtern.", false, "Boah ist das Lecker, ich will mehr.");
 }
 
 function handleBoard() {
@@ -240,51 +240,51 @@ function handleBoard() {
 
 function handleGuitar() {
   if (needsBeat("guitar")) {
-    show(beatBlockMessage, false, "Erst Beat.");
+    show(beatBlockMessage, false, "Erst Beat. Ohne Bumm-Tschak wird das hier nix.");
     return;
   }
 
   if (has("guitar")) {
-    show("Die Gitarre haengt bereit. Jetzt braucht sie nur noch den richtigen Sound.", false, "Bereit.");
+    show("Die Gitarre haengt bereit. Jetzt braucht sie nur noch den richtigen Sound.", false, "Gitarre wartet. Sie wirkt leicht beleidigt.");
     return;
   }
 
   addItem("guitar");
   solve("guitar");
-  show("Du nimmst die Gitarre. Schwer, leicht verstimmt, aber eindeutig bereit fuer Aerger in Dur.", false, "Gitarre!");
+  show("Du nimmst die Gitarre. Schwer, leicht verstimmt, aber eindeutig bereit fuer Aerger in Dur.", false, "Gitarre geschnappt. Verstimmt, aber motiviert.");
 }
 
 function handlePedals() {
   if (needsBeat("pedals")) {
-    show(beatBlockMessage, false, "Erst Beat.");
+    show(beatBlockMessage, false, "Erst Beat. Pedale ohne Groove sind nur Stolperfallen.");
     return;
   }
 
   if (!has("cable")) {
     addItem("cable");
     solve("pedals");
-    show("Zwischen den Pedalen liegt ein Kabel. Nicht schoen aufgewickelt, aber es funktioniert bestimmt.", false, "Kabel!");
+    show("Zwischen den Pedalen liegt ein Kabel. Nicht schoen aufgewickelt, aber es funktioniert bestimmt.", false, "Kabel gefunden. Sieht wild aus, klingt bestimmt teuer.");
     return;
   }
 
-  show("Die Pedale warten auf Strom, Laerm und eine mittelgute Entscheidung.", false, "Pedale.");
+  show("Die Pedale warten auf Strom, Laerm und eine mittelgute Entscheidung.", false, "Pedale warten. Mindestens eins macht spaeter Quatsch.");
 }
 
 function handleDrums() {
   if (state.beersDrunk < neededBeers) {
-    show("Noch zu schuechtern fuer den Beat. Vielleicht liegt hier irgendwo noch ein gutes Bier.", false, "Zu schuechtern.");
+    show("Noch zu schuechtern fuer den Beat. Vielleicht liegt hier irgendwo noch ein gutes Bier.", false, "Noch zu schuechtern. Erst noch Mut in Flaschenform.");
     return;
   }
 
   if (hasBeat()) {
-    show("Der Beat steht schon: Kick, Snare, Kick-Kick, Snare. Genau so.", false, "Beat steht.");
+    show("Der Beat steht schon: Kick, Snare, Kick-Kick, Snare. Genau so.", false, "Beat steht. Nicht anfassen, sonst faellt er um.");
     return;
   }
 
   addItem("beat");
   addItem("groove");
   solve("drums");
-  show("Da ist er: Kick, Snare, Kick-Kick, Snare. Ein fetter Beat, der den ganzen Raum anschiebt.", false, "Fetter Beat!");
+  show("Da ist er: Kick, Snare, Kick-Kick, Snare. Ein fetter Beat, der den ganzen Raum anschiebt.", false, "Fetter Beat. Der Raum wackelt, alle tun professionell.");
 
   if (!state.beatStorySeen) {
     state.beatStorySeen = true;
@@ -306,29 +306,29 @@ function handlePoster() {
 
 function handleAmp() {
   if (needsBeat("amp")) {
-    show(beatBlockMessage, false, "Erst Beat.");
+    show(beatBlockMessage, false, "Erst Beat. Der Amp brummt sonst nur traurig rum.");
     return;
   }
 
   if (!has("guitar")) {
-    show("Der Amp brummt beleidigt. Vielleicht erst die Gitarre holen.", false, "Erst Gitarre.");
+    show("Der Amp brummt beleidigt. Vielleicht erst die Gitarre holen.", false, "Erst Gitarre. Amp alleine ist nur Heizung mit Ego.");
     return;
   }
 
   if (!has("cable")) {
-    show("Gitarre ist da, aber ohne Kabel bleibt der Amp nur teure Deko.", false, "Kabel fehlt.");
+    show("Gitarre ist da, aber ohne Kabel bleibt der Amp nur teure Deko.", false, "Kabel fehlt. Strom ohne Kabel ist nur Hoffnung.");
     return;
   }
 
   addItem("tone");
   addItem("riff");
   solve("amp");
-  show("Du steckst ein, drehst Gain auf und findest ein Riff, das nach kleinem Raum und grossem Plan klingt.", false, "Riff!");
+  show("Du steckst ein, drehst Gain auf und findest ein Riff, das nach kleinem Raum und grossem Plan klingt.", false, "Riff gefunden. Klingt nach Aerger mit Ansage.");
 }
 
 function handleNotebook() {
   if (needsBeat("notebook")) {
-    show(beatBlockMessage, false, "Erst Beat.");
+    show(beatBlockMessage, false, "Erst Beat. Ohne Fundament wird das nur Tagebuch.");
     return;
   }
 
@@ -341,7 +341,7 @@ function handleNotebook() {
   if (!has("tone")) missing.push("Sound");
 
   if (missing.length > 0) {
-    show(`Noch fehlt: ${missing.join(", ")}.`, false, "Da fehlt was.");
+    show(`Noch fehlt: ${missing.join(", ")}.`, false, "Da fehlt noch Zeug. Punk ist einfach, aber nicht so einfach.");
     return;
   }
 
@@ -350,7 +350,7 @@ function handleNotebook() {
   show(
     "Fertig. Der Song heisst 'Zu spaet, aber niemals zu leise'. Die Tuer geht auf, weil sogar das Schloss den Refrain mitsingt.",
     true,
-    "Song fertig!",
+    "Song fertig. Wahrscheinlich ein Hit. Vielleicht auch Hausverbot.",
   );
 }
 
@@ -371,7 +371,7 @@ hotspots.forEach((hotspot) => {
     rememberPointerPoint(event);
 
     if (state.won && hotspot.dataset.action !== "notebook") {
-      show("Der Song ist fertig. Der Proberaum hat seine Schuldigkeit getan.", true, "Fertig.");
+      show("Der Song ist fertig. Der Proberaum hat seine Schuldigkeit getan.", true, "Fertig. Nichts mehr anfassen, es war teuer genug.");
       return;
     }
 
@@ -387,7 +387,7 @@ beerButtons.forEach((beerButton, index) => {
     rememberPointerPoint(event);
 
     if (state.won) {
-      show("Der Song ist fertig. Mehr Bier waere jetzt nur noch Deko.", true, "Fertig.");
+      show("Der Song ist fertig. Mehr Bier waere jetzt nur noch Deko.", true, "Song ist fertig. Jetzt nur noch legendaer gucken.");
       return;
     }
 

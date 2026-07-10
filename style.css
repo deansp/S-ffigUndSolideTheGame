@@ -32,7 +32,7 @@ button {
   min-height: 100svh;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 14px;
+  gap: 10px;
   padding: 14px;
   padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right))
     max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
@@ -42,7 +42,7 @@ button {
   grid-column: 1 / -1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -112,18 +112,48 @@ h1 {
 
 .stage {
   position: relative;
-  align-self: start;
+  align-self: center;
   justify-self: center;
-  width: min(100%, calc((100vh - 128px) * 1448 / 1086));
-  width: min(100%, calc((100svh - 128px) * 1448 / 1086));
-  max-height: calc(100vh - 128px);
-  max-height: calc(100svh - 128px);
+  width: min(100%, calc((100vh - 96px) * 1448 / 1086));
+  width: min(100%, calc((100svh - 96px) * 1448 / 1086));
+  max-height: calc(100vh - 96px);
+  max-height: calc(100svh - 96px);
   aspect-ratio: 1448 / 1086;
   overflow: hidden;
   border: 1px solid rgba(255, 240, 199, 0.18);
   border-radius: 8px;
   background: #191814;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.stage-actions {
+  position: absolute;
+  z-index: 7;
+  top: 2%;
+  right: 2%;
+  gap: 7px;
+  padding: 5px;
+  border: 1px solid rgba(255, 240, 199, 0.2);
+  border-radius: 8px;
+  background: rgba(18, 17, 15, 0.66);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(6px);
+}
+
+.stage-actions .text-toggle,
+.stage-actions .icon-button {
+  min-height: 34px;
+}
+
+.stage-actions .text-toggle {
+  padding: 0 10px;
+  font-size: 0.76rem;
+}
+
+.stage-actions .icon-button {
+  width: 34px;
+  height: 34px;
+  font-size: 1.05rem;
 }
 
 .song-progress {
@@ -593,8 +623,8 @@ h1 {
   }
 
   .topbar {
-    align-items: start;
-    gap: 10px;
+    align-items: center;
+    gap: 6px;
   }
 
   .eyebrow {
@@ -607,6 +637,13 @@ h1 {
 
   .header-actions {
     gap: 8px;
+  }
+
+  .stage-actions {
+    top: 2%;
+    right: 2%;
+    gap: 4px;
+    padding: 4px;
   }
 
   .text-toggle,
@@ -625,12 +662,28 @@ h1 {
     font-size: 0.72rem;
   }
 
+  .stage-actions .text-toggle,
+  .stage-actions .icon-button {
+    min-height: 26px;
+  }
+
+  .stage-actions .text-toggle {
+    padding: 0 6px;
+    font-size: 0.56rem;
+  }
+
+  .stage-actions .icon-button {
+    width: 26px;
+    height: 26px;
+    font-size: 0.82rem;
+  }
+
   .hotspot span {
     display: none;
   }
 
   .room-message {
-    top: 2.5%;
+    top: 9%;
     width: 82%;
     min-height: 34px;
     padding: 5px 7px;
@@ -657,9 +710,10 @@ h1 {
 
   .local-feedback {
     display: block;
-    max-width: min(102px, 34%);
+    max-width: min(168px, 54%);
     padding: 3px 5px;
-    font-size: 0.52rem;
+    font-size: 0.56rem;
+    line-height: 1.12;
   }
 
   .story-overlay {
@@ -762,6 +816,16 @@ h1 {
     gap: 6px;
   }
 
+  .stage-actions {
+    position: absolute;
+    left: auto;
+    width: auto;
+    align-items: center;
+    border-color: rgba(255, 240, 199, 0.2);
+    background: rgba(18, 17, 15, 0.66);
+    padding: 4px;
+  }
+
   .text-toggle,
   .icon-button {
     min-height: 32px;
@@ -776,6 +840,22 @@ h1 {
     width: 32px;
     height: 32px;
     font-size: 1rem;
+  }
+
+  .stage-actions .text-toggle,
+  .stage-actions .icon-button {
+    min-height: 25px;
+  }
+
+  .stage-actions .text-toggle {
+    padding: 0 5px;
+    font-size: 0.54rem;
+  }
+
+  .stage-actions .icon-button {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
   }
 
   .stage {
@@ -797,6 +877,7 @@ h1 {
 
   .topbar {
     align-items: center;
+    justify-content: center;
   }
 
   .eyebrow {
@@ -833,6 +914,7 @@ h1 {
 
   .room-message {
     width: 76%;
+    top: 8%;
     min-height: 28px;
     padding: 4px 6px;
   }
@@ -847,9 +929,10 @@ h1 {
   }
 
   .local-feedback {
-    max-width: 96px;
+    max-width: 150px;
     padding: 3px 5px;
-    font-size: 0.5rem;
+    font-size: 0.54rem;
+    line-height: 1.1;
   }
 
   .story-overlay {

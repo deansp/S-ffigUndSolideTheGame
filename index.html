@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sueffig & Solide - The Game</title>
-    <link rel="stylesheet" href="style.css?v=19" />
+    <link rel="stylesheet" href="style.css?v=22" />
   </head>
   <body>
     <main class="game">
@@ -12,7 +12,15 @@
         <div>
           <h1>Sueffig & Solide</h1>
         </div>
-        <div class="header-actions">
+      </header>
+
+      <section id="stage" class="stage" aria-label="Proberaum">
+        <img
+          class="room-image"
+          src="Hintergrund/Bild3.png"
+          alt="Ein enger Proberaum mit Gitarren, Schlagzeug, Verstaerkern, Setlist und vielen Bierflaschen"
+        />
+        <div class="header-actions stage-actions">
           <button
             id="helpButton"
             class="text-toggle"
@@ -35,14 +43,6 @@
             ↻
           </button>
         </div>
-      </header>
-
-      <section id="stage" class="stage" aria-label="Proberaum">
-        <img
-          class="room-image"
-          src="Hintergrund/Bild3.png"
-          alt="Ein enger Proberaum mit Gitarren, Schlagzeug, Verstaerkern, Setlist und vielen Bierflaschen"
-        />
         <div id="messageBox" class="room-message" aria-live="polite">
           <p id="messageText"></p>
         </div>
@@ -125,6 +125,6 @@
     </main>
 
     <audio id="backgroundMusic" src="Hintergrundmusik/Atzenklo.mp3" preload="none" loop></audio>
-    <script src="script.js?v=18"></script>
+    <script src="script.js?v=19"></script>
   </body>
 </html>
