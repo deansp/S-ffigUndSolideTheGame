@@ -27,78 +27,6 @@ button {
   font: inherit;
 }
 
-.rotate-phone {
-  position: fixed;
-  z-index: 30;
-  right: max(10px, env(safe-area-inset-right));
-  bottom: max(10px, env(safe-area-inset-bottom));
-  left: max(10px, env(safe-area-inset-left));
-  display: none;
-  color: var(--text);
-  pointer-events: none;
-  text-align: left;
-}
-
-.rotate-phone-card {
-  width: min(100%, 430px);
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid rgba(255, 240, 199, 0.44);
-  border-radius: 8px;
-  background: rgba(18, 17, 15, 0.94);
-  padding: 8px 10px;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.48);
-  pointer-events: auto;
-  backdrop-filter: blur(8px);
-}
-
-.rotate-phone-icon {
-  display: inline-grid;
-  width: 32px;
-  height: 32px;
-  place-items: center;
-  border: 1px solid rgba(240, 180, 71, 0.6);
-  border-radius: 999px;
-  color: var(--accent-strong);
-  font-size: 1.1rem;
-  line-height: 1;
-  transform: rotate(90deg);
-}
-
-.rotate-phone p {
-  margin: 0 0 3px;
-  font-size: 0.78rem;
-  font-weight: 800;
-  line-height: 1.12;
-}
-
-.rotate-phone small {
-  display: block;
-  color: var(--muted);
-  font-size: 0.68rem;
-  font-weight: 800;
-  line-height: 1.28;
-}
-
-.rotate-phone-close {
-  width: 28px;
-  height: 28px;
-  border: 1px solid rgba(255, 240, 199, 0.28);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.22);
-  color: var(--text);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.rotate-phone.is-hidden {
-  display: none !important;
-}
-
 .game {
   min-height: 100vh;
   min-height: 100svh;
@@ -803,18 +731,14 @@ h1 {
 
 @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
   body {
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: auto;
   }
 
-  .rotate-phone {
-    display: block;
-  }
-
   .game {
-    width: max-content;
-    min-width: 100vw;
-    padding-bottom: 86px;
+    width: 100%;
+    min-width: 0;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
   }
 
   .topbar {
@@ -855,10 +779,10 @@ h1 {
   }
 
   .stage {
-    width: 172vw;
+    width: 100%;
     max-height: none;
     margin-top: 0;
-    justify-self: start;
+    justify-self: center;
   }
 
 }

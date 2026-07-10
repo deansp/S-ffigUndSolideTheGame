@@ -10,8 +10,6 @@ const helpButton = document.querySelector("#helpButton");
 const musicButton = document.querySelector("#musicButton");
 const restartButton = document.querySelector("#restartButton");
 const backgroundMusic = document.querySelector("#backgroundMusic");
-const rotateHint = document.querySelector("#rotateHint");
-const rotateHintClose = document.querySelector("#rotateHintClose");
 const hotspots = document.querySelectorAll(".hotspot");
 const beerButtons = document.querySelectorAll(".beer");
 const songSteps = document.querySelectorAll(".song-step");
@@ -426,9 +424,6 @@ boardOverlay.addEventListener("click", hideBoardOverlay);
 posterOverlay.addEventListener("click", hidePosterOverlay);
 backgroundMusic.addEventListener("play", render);
 backgroundMusic.addEventListener("pause", render);
-rotateHintClose.addEventListener("click", () => {
-  rotateHint.classList.add("is-hidden");
-});
 
 restartButton.addEventListener("click", () => {
   const keepHelpMode = state.isHelping;
